@@ -27,9 +27,12 @@ current_endDate = today.strftime("%Y%m%d")
 
 # Set Dates and Empty Dataframe
 dates = pd.date_range(pd.datetime(2018,4,5), periods=10)
-full_dataset = pd.DataFrame()
 
-for i in dates:
+def qualified_pitchers():
+
+    qualified_pitchers = pd.DataFrame()
+
+    for i in dates:
 
         ### INPUTS FOR DATA SCRAPING ###
         ################################
@@ -44,7 +47,7 @@ for i in dates:
 
         try:
             # Load URL, Scrap URL
-            print("Loading URL...")
+            print("Loading Qualified Pitchers URL...")
             driver.get(relevant_url)
             time.sleep(10)
 
@@ -70,11 +73,14 @@ for i in dates:
             # Column Naming and Export
             df.columns = ['Date', 'Name', 'Tm', 'IP', 'TBF', 'K/9', 'BB/9', 'K/BB', 'HR/9', 'K%', 'BB%', 'K-BB%', 'AVG', 'WHIP', 'BABIP', 'LOB%', 'FIP', 'xFIP']
             df['Date'] = (unformat_endDate + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
-            full_dataset = full_dataset.append(df)
+            qualified_pitchers = qualified_pitchers.append(df)
             print("Inserted qualified pitchers for " + endDate)
 
         except AttributeError:
             print("No qualified pitchers for " + endDate)
             continue
 
-full_dataset.to_csv('test-qualified-pitchers.csv')
+    qualified_pitchers.to_csv('test-qualified-pitchers.csv')
+
+# Run Functions
+qualified_pitchers()

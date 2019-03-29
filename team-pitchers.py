@@ -17,11 +17,11 @@ current_endDate = today.strftime("%Y%m%d")
 """
 
 # Date and Function Function
-dates = pd.date_range(pd.datetime(2018,6,30), periods=2)
+dates = pd.date_range(pd.datetime(2018,4,5), periods=10)
 
-def team_pitching():
+def team_pitchers():
 
-    team_pitching_dataset = pd.DataFrame()
+    team_pitchers_dataset = pd.DataFrame()
 
     for i in dates:
         ### INPUTS FOR DATA SCRAPING ###
@@ -34,39 +34,43 @@ def team_pitching():
 
         relevant_url = 'https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=42&splitArrPitch=&position=P&autoPt=false&splitTeams=false&statType=team&statgroup=2&startDate=' + startDate + "&enddate=" + endDate + "&players=&filter=&endDate=" + endDate
 
-        # Load URL, Scrap URL
-        url = relevant_url
-        print("Sleeping...")
-        driver.get(url)
-        time.sleep(15)
-        print("Resuming...")
+        try:
+            # Load URL, Scrap URL
+            url = relevant_url
+            print("Loading Team Pitchers URL...")
+            driver.get(url)
+            time.sleep(10)
 
-        # Convert to Beautiful Soup
-        htmlSource = driver.page_source
-        soup = BeautifulSoup(htmlSource, 'lxml')
+            # Convert to Beautiful Soup
+            htmlSource = driver.page_source
+            soup = BeautifulSoup(htmlSource, 'lxml')
 
-        # Beautiful Soup Parsing Data Table
-        div_table = soup.find('div', attrs={'class': 'fg-data-grid undefined'})
-        table = div_table.find('table')
-        table_rows = table.find('tbody')
-        rows = table_rows.find_all('tr')
+            # Beautiful Soup Parsing Data Table
+            div_table = soup.find('div', attrs={'class': 'fg-data-grid undefined'})
+            table = div_table.find('table')
+            table_rows = table.find('tbody')
+            rows = table_rows.find_all('tr')
 
-        # Cleaning Text to Data Elements
-        data = []
-        for row in rows:
-            cols = row.find_all('td')
-            cols = cols[0].find_all('td', attrs={'data-stat':'Name'}) + cols[1:]
-            cols = [ele.text.strip() for ele in cols]
-            data.append([ele for ele in cols if ele])
-            df = pd.DataFrame(data)
+            # Cleaning Text to Data Elements
+            data = []
+            for row in rows:
+                cols = row.find_all('td')
+                cols = cols[0].find_all('td', attrs={'data-stat':'Name'}) + cols[1:]
+                cols = [ele.text.strip() for ele in cols]
+                data.append([ele for ele in cols if ele])
+                df = pd.DataFrame(data)
 
-        # Column Naming and Export
-        df.columns = ['Date', 'Tm', 'IP', 'TBF', 'K/9', 'BB/9', 'K/BB', 'HR/9', 'K%', 'BB%', 'K-BB%', 'AVG', 'WHIP', 'BABIP', 'LOB%', 'FIP', 'xFIP']
-        df['Date'] = (unformat_endDate + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
-        team_pitching_dataset = team_pitching_dataset.append(df)
-        print("Inserted...")
+            # Column Naming and Export
+            df.columns = ['Date', 'Tm', 'IP', 'TBF', 'K/9', 'BB/9', 'K/BB', 'HR/9', 'K%', 'BB%', 'K-BB%', 'AVG', 'WHIP', 'BABIP', 'LOB%', 'FIP', 'xFIP']
+            df['Date'] = (unformat_endDate + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+            team_pitchers_dataset = team_pitchers_dataset.append(df)
+            print("Inserted team pitching stats for " + endDate)
 
-    team_pitching_dataset.to_csv('team-pitching-dataset.csv')
+        except AttributeError:
+            print("No team pitching stats for " + endDate)
+            continue
+
+    team_pitchers_dataset.to_csv('team-pitchers-dataset.csv')
 
 # Run Functions
-team_pitching()
+team_pitchers()
