@@ -26,7 +26,7 @@ current_endDate = today.strftime("%Y%m%d")
 """
 
 # Set Dates and Empty Dataframe
-dates = pd.date_range(pd.datetime(2018,4,5), periods=10)
+dates = pd.date_range(pd.datetime(2018,4,5), periods=210)
 
 def qualified_pitchers():
 
@@ -39,7 +39,7 @@ def qualified_pitchers():
         unformat_endDate = i
         endDate = unformat_endDate.strftime("%Y-%m-%d")
         startDate = (unformat_endDate - datetime.timedelta(days=45)).strftime("%Y-%m-%d")
-        division = AL_west
+        division = AL_east
         #################################
         #################################
 
@@ -80,7 +80,7 @@ def qualified_pitchers():
             print("No qualified pitchers for " + endDate)
             continue
 
-    qualified_pitchers.to_csv('test-qualified-pitchers.csv')
+    qualified_pitchers.to_csv('al-east-qualified-pitchers.csv')
 
 # Run Functions
 qualified_pitchers()
