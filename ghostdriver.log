@@ -1,28 +1,34 @@
-[INFO  - 2019-04-03T21:17:14.833Z] GhostDriver - Main - running on port 64412
-[INFO  - 2019-04-03T21:17:16.892Z] Session [dba67940-5655-11e9-9683-f5f7203553d5] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
-[INFO  - 2019-04-03T21:17:16.892Z] Session [dba67940-5655-11e9-9683-f5f7203553d5] - page.customHeaders:  - {}
-[INFO  - 2019-04-03T21:17:16.892Z] Session [dba67940-5655-11e9-9683-f5f7203553d5] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
-[INFO  - 2019-04-03T21:17:16.892Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: dba67940-5655-11e9-9683-f5f7203553d5
-[INFO  - 2019-04-03T21:22:14.830Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-03T21:27:14.839Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[ERROR - 2019-04-03T21:29:27.355Z] Session [dba67940-5655-11e9-9683-f5f7203553d5] - page.onError - msg: ReferenceError: Can't find variable: googletag
+[INFO  - 2019-04-06T17:41:21.815Z] GhostDriver - Main - running on port 50089
+[INFO  - 2019-04-06T17:41:23.939Z] Session [3252e140-5893-11e9-8f54-e94289736158] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2019-04-06T17:41:23.940Z] Session [3252e140-5893-11e9-8f54-e94289736158] - page.customHeaders:  - {}
+[INFO  - 2019-04-06T17:41:23.940Z] Session [3252e140-5893-11e9-8f54-e94289736158] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2019-04-06T17:41:23.940Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 3252e140-5893-11e9-8f54-e94289736158
+[ERROR - 2019-04-06T17:44:54.214Z] Session [3252e140-5893-11e9-8f54-e94289736158] - page.onError - msg: ReferenceError: Can't find variable: googletag
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2019-04-03T21:29:27.356Z] Session [dba67940-5655-11e9-9683-f5f7203553d5] - page.onError - stack:
+[ERROR - 2019-04-06T17:44:54.216Z] Session [3252e140-5893-11e9-8f54-e94289736158] - page.onError - stack:
   p (https://c.amazon-adsystem.com/aax2/apstag.js:2)
 
   phantomjs://platform/console++.js:263 in error
-[INFO  - 2019-04-03T21:32:14.837Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-03T21:37:14.849Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-03T21:42:14.892Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-03T21:47:14.902Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-03T21:52:14.902Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-03T21:57:14.902Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[ERROR - 2019-04-03T21:59:57.406Z] Session [dba67940-5655-11e9-9683-f5f7203553d5] - page.onError - msg: ReferenceError: Can't find variable: googletag
+[INFO  - 2019-04-06T17:46:21.812Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-06T17:51:21.812Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-06T17:56:21.813Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-06T18:01:21.813Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-06T18:06:21.842Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-06T18:11:21.845Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-06T18:16:21.857Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-06T18:21:21.925Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-06T18:26:21.925Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-06T18:31:21.926Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-06T18:36:22.409Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[ERROR - 2019-04-06T18:36:22.578Z] Session [3252e140-5893-11e9-8f54-e94289736158] - page.onError - msg: TypeError: undefined is not a constructor (evaluating 'window.prepareIndex()')
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2019-04-03T21:59:57.407Z] Session [dba67940-5655-11e9-9683-f5f7203553d5] - page.onError - stack:
-  p (https://c.amazon-adsystem.com/aax2/apstag.js:2)
+[ERROR - 2019-04-06T18:36:22.579Z] Session [3252e140-5893-11e9-8f54-e94289736158] - page.onError - stack:
+  (anonymous function) (https://cdn.flashtalking.com/95739/Disney_ES6_Template_2.5__DLR_BTHDT_70_0FFER__728x90_FT_RICH/index.html:395)
+  (anonymous function) (https://cdn.flashtalking.com/95739/Disney_ES6_Template_2.5__DLR_BTHDT_70_0FFER__728x90_FT_RICH/index.html:395)
+  n (https://cdn.flashtalking.com/95739/Disney_ES6_Template_2.5__DLR_BTHDT_70_0FFER__728x90_FT_RICH/index.html:395)
+  (anonymous function) (https://cdn.flashtalking.com/95739/Disney_ES6_Template_2.5__DLR_BTHDT_70_0FFER__728x90_FT_RICH/index.html:395)
 
   phantomjs://platform/console++.js:263 in error
-[INFO  - 2019-04-03T22:02:14.903Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-06T18:41:22.574Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW

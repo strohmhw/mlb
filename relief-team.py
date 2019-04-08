@@ -21,7 +21,7 @@ dates = pd.date_range(pd.datetime(2018,4,5), periods=10)
 
 def relief_team():
 
-    relief-team-dataset = pd.DataFrame()
+    relief_team_dataset = pd.DataFrame()
 
     for i in dates:
         ### INPUTS FOR DATA SCRAPING ###
@@ -32,7 +32,7 @@ def relief_team():
         #################################
         #################################
 
-        relevant_url = 'https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=42&splitArrPitch=&position=RP&autoPt=false&splitTeams=false&statType=team&statgroup=2&startDate=' + startDate + "&enddate=" + endDate + "&players=&filter=&endDate=" + endDate
+        relevant_url = 'https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=43&splitArrPitch=&position=P&autoPt=false&splitTeams=false&statType=team&statgroup=2&startDate=' + startDate + "&enddate=" + endDate + "&players=&filter=&endDate=" + endDate
 
         try:
             # Load URL, Scrap URL
@@ -63,14 +63,14 @@ def relief_team():
             # Column Naming and Export
             df.columns = ['Date', 'Tm', 'IP', 'TBF', 'K/9', 'BB/9', 'K/BB', 'HR/9', 'K%', 'BB%', 'K-BB%', 'AVG', 'WHIP', 'BABIP', 'LOB%', 'FIP', 'xFIP']
             df['Date'] = (unformat_endDate + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
-            relief-team-dataset = relief-team-dataset.append(df)
+            relief_team_dataset = relief_team_dataset.append(df)
             print("Inserted relief team stats for " + endDate)
 
         except AttributeError:
             print("No relief team stats for " + endDate)
             continue
 
-    relief-team-dataset.to_csv('team-pitchers-dataset.csv')
+    relief_team_dataset.to_csv('team-pitchers-dataset.csv')
 
 # Run Functions
 relief_team()
