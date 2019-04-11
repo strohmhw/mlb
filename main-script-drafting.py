@@ -12,6 +12,8 @@ NL_west = pd.read_csv('qualified-pitchers/nl-west-qualified-pitchers.csv')
 
 all_team_pitchers = pd.read_csv('team-pitchers-dataset.csv')
 
+all_team_batters = pd.read_csv('team-batters-dataset.csv')
+
 # Combine CSV Data Files, Add Columns
 all_qualified_pitchers = pd.DataFrame()
 all_qualified_pitchers = all_qualified_pitchers.append([AL_east, AL_central, AL_west, NL_east, NL_central, NL_west])
@@ -32,6 +34,30 @@ print(all_qualified_pitchers)
 
 
 # Fade Especially High BP Usage / xFIP Teams
+
+
+
+# BaseRuns Calcs
+all_team_batters['TB'] = (1 * all_team_batters['1B']) + (2 * all_team_batters['2B']) + (3 * all_team_batters['3B']) + (4 * all_team_batters['HR'])
+all_team_batters['varA'] = all_team_batters['H'] + all_team_batters['BB'] + all_team_batters['HBP'] - all_team_batters['HR'] - .5 * all_team_batters['IBB']
+all_team_batters['varB'] = (1.4 * all_team_batters['TB'] - .6 * all_team_batters['H'] - 3 * all_team_batters['HR'] + .1 * (all_team_batters['BB'] + all_team_batters['HBP'] - all_team_batters['IBB']) + .9 * (all_team_batters['SB'] - all_team_batters['CS'] - all_team_batters['GDP'])) * 1.1
+all_team_batters['varC'] = all_team_batters['AB'] - all_team_batters['H'] + all_team_batters['CS'] + all_team_batters['GDP']
+all_team_batters['varD'] = all_team_batters['HR']
+
+all_team_batters.drop_duplicates(inplace=True)
+
+all_team_batters['BsR_Sc_Season'] = ((all_team_batters['varA'] * all_team_batters['varB']) / (all_team_batters['varB'] + all_team_batters['varC'])) + all_team_batters['varD']
+all_team_batters['BsR_Sc_Game'] = all_team_batters['BsR_Sc_Season'] / all_team_batters['G']
+
+
+print(all_team_batters)
+
+""" Pitching
+A = H + BB - HR
+B = (1.4 * (1.12 * H + 4 * HR) - .6 * H - 3 * HR + .1 * BB) * 1.1
+C = 3 * IP
+D = HR"""
+
 
 
 # For Hitting, we take team stats for last 45 days, adjust based on players in lineup/ performancec over that time

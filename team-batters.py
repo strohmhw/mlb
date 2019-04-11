@@ -17,11 +17,11 @@ current_endDate = today.strftime("%Y%m%d")
 """
 
 # Date and Function Function
-dates = pd.date_range(pd.datetime(2018,4,5), periods=210)
+dates = pd.date_range(pd.datetime(2018,4,5), periods=10)
 
-def relief_team():
+def team_batters():
 
-    relief_team_dataset = pd.DataFrame()
+    team_batters_dataset = pd.DataFrame()
 
     for i in dates:
         ### INPUTS FOR DATA SCRAPING ###
@@ -32,12 +32,12 @@ def relief_team():
         #################################
         #################################
 
-        relevant_url = 'https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=43&splitArrPitch=&position=P&autoPt=false&splitTeams=false&statType=team&statgroup=2&startDate=' + startDate + "&enddate=" + endDate + "&players=&filter=&endDate=" + endDate
+        relevant_url = 'https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=&splitArrPitch=&position=B&autoPt=false&splitTeams=false&statType=team&statgroup=1&startDate=' + startDate + "&enddate=" + endDate + "&players=&filter=&endDate=" + endDate
 
         try:
             # Load URL, Scrap URL
             url = relevant_url
-            print("Loading Relief Team URL...")
+            print("Loading Team Batters URL...")
             driver.get(url)
             time.sleep(10)
 
@@ -61,16 +61,16 @@ def relief_team():
                 df = pd.DataFrame(data)
 
             # Column Naming and Export
-            df.columns = ['Date', 'Tm', 'IP', 'TBF', 'K/9', 'BB/9', 'K/BB', 'HR/9', 'K%', 'BB%', 'K-BB%', 'AVG', 'WHIP', 'BABIP', 'LOB%', 'FIP', 'xFIP']
+            df.columns = ['Date', 'Tm', 'G', 'PA', 'AB', 'H', '1B', '2B', '3B', 'HR', 'R', 'RBI', 'BB', 'IBB', 'SO', 'HBP', 'SF', 'SH', 'GDP', 'SB', 'CS', 'AVG']
             df['Date'] = (unformat_endDate + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
-            relief_team_dataset = relief_team_dataset.append(df)
-            print("Inserted relief team stats for " + endDate)
+            team_batters_dataset = team_batters_dataset.append(df)
+            print("Inserted team batting stats for " + endDate)
 
         except AttributeError:
-            print("No relief team stats for " + endDate)
+            print("No team batting stats for " + endDate)
             continue
 
-    relief_team_dataset.to_csv('relief-team-pitchers.csv')
+    team_batters_dataset.to_csv('team-batters-dataset.csv')
 
 # Run Functions
-relief_team()
+team_batters()
