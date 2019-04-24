@@ -12,7 +12,7 @@ NL_west = pd.read_csv('qualified-pitchers/nl-west-qualified-pitchers.csv')
 
 all_team_pitchers = pd.read_csv('team-pitchers-dataset.csv')
 
-all_team_batters = pd.read_csv('team-batters-dataset.csv')
+all_team_batters = pd.read_csv('team-batters-dataset-all.csv')
 
 # Combine CSV Data Files, Add Columns
 all_qualified_pitchers = pd.DataFrame()
@@ -47,8 +47,10 @@ all_team_batters['varD'] = all_team_batters['HR']
 all_team_batters.drop_duplicates(inplace=True)
 
 all_team_batters['BsR_Sc_Season'] = ((all_team_batters['varA'] * all_team_batters['varB']) / (all_team_batters['varB'] + all_team_batters['varC'])) + all_team_batters['varD']
-all_team_batters['BsR_Sc_Game'] = all_team_batters['BsR_Sc_Season'] / all_team_batters['G']
+all_team_batters['BsR_Sc_Game'] = all_team_batters['BsR_Sc_Season'] / all_team_batters['PA'] * 38
 
+
+all_team_batters.to_csv('hank.csv')
 
 print(all_team_batters)
 

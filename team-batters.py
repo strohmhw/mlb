@@ -17,7 +17,7 @@ current_endDate = today.strftime("%Y%m%d")
 """
 
 # Date and Function Function
-dates = pd.date_range(pd.datetime(2018,4,5), periods=10)
+dates = pd.date_range(pd.datetime(2018,4,5), periods=210)
 
 def team_batters():
 
@@ -70,7 +70,7 @@ def team_batters():
             print("No team batting stats for " + endDate)
             continue
 
-    team_batters_dataset.to_csv('team-batters-dataset.csv')
+    team_batters_dataset.to_csv('team-batters-dataset-all.csv')
 
 # Run Functions
 team_batters()

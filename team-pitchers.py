@@ -32,7 +32,7 @@ def team_pitchers():
         #################################
         #################################
 
-        relevant_url = 'https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=42&splitArrPitch=&position=P&autoPt=false&splitTeams=false&statType=team&statgroup=2&startDate=' + startDate + "&enddate=" + endDate + "&players=&filter=&endDate=" + endDate
+        relevant_url = 'https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=42&splitArrPitch=&position=P&autoPt=false&splitTeams=false&statType=team&statgroup=1&startDate=' + startDate + "&enddate=" + endDate + "&players=&filter=&endDate=" + endDate
 
         try:
             # Load URL, Scrap URL
@@ -61,7 +61,7 @@ def team_pitchers():
                 df = pd.DataFrame(data)
 
             # Column Naming and Export
-            df.columns = ['Date', 'Tm', 'IP', 'TBF', 'K/9', 'BB/9', 'K/BB', 'HR/9', 'K%', 'BB%', 'K-BB%', 'AVG', 'WHIP', 'BABIP', 'LOB%', 'FIP', 'xFIP']
+            df.columns = ['Date', 'Tm', 'IP', 'TBF', 'ERA', 'H', '2B', '3B', 'R', 'ER', 'HR', 'BB', 'IBB', 'HBP', 'SO', 'AVG', 'OBP', 'SLG', 'wOBA']
             df['Date'] = (unformat_endDate + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
             team_pitchers_dataset = team_pitchers_dataset.append(df)
             print("Inserted team pitching stats for " + endDate)
@@ -70,7 +70,7 @@ def team_pitchers():
             print("No team pitching stats for " + endDate)
             continue
 
-    team_pitchers_dataset.to_csv('team-pitchers-dataset.csv')
+    team_pitchers_dataset.to_csv('team-pitchers-dataset-basic.csv')
 
 # Run Functions
 team_pitchers()

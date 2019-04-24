@@ -7,12 +7,11 @@ from fuzzywuzzy import process
 
 # Import CSV Data Files
 odds_file = pd.read_csv('mlb-odds/mlb-odds-2018.csv')
-print(odds_file)
 
 AL_east = pd.read_csv('qualified-pitchers/al-east-qualified-pitchers.csv')
 AL_central = pd.read_csv('qualified-pitchers/al-central-qualified-pitchers.csv')
-NL_east = pd.read_csv('qualified-pitchers/nl-east-qualified-pitchers.csv')
 AL_west = pd.read_csv('qualified-pitchers/al-west-qualified-pitchers.csv')
+NL_east = pd.read_csv('qualified-pitchers/nl-east-qualified-pitchers.csv')
 NL_central = pd.read_csv('qualified-pitchers/nl-central-qualified-pitchers.csv')
 NL_west = pd.read_csv('qualified-pitchers/nl-west-qualified-pitchers.csv')
 
@@ -85,16 +84,32 @@ for x in fixed_odds['Date']:
 fixed_odds['Date'] = fixed_dates
 fixed_odds['F5'] = fixed_odds['1st'] + fixed_odds['2nd'] + fixed_odds['3rd'] + fixed_odds['4th'] + fixed_odds['5th']
 fixed_odds = fixed_odds.drop(['fit', 'source', 'qp_match', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th'], axis=1)
-print(fixed_odds)
+
+# Assign Individual Game IDs
+game_ids = []
+end_range = int(int(len(fixed_odds.index))/2)
+print(end_range)
+for i in range(1,end_range):
+    label = "Game " + str(i)
+    game_ids.append(label)
+    game_ids.append(label)
+
+game_ids = pd.Series(game_ids)
+fixed_odds['game_id'] = game_ids
+
 # Align Home and Away Teams in Single Matchup
 home_fixed_odds = fixed_odds.loc[fixed_odds['VH'] == "H"]
 home_fixed_odds = home_fixed_odds.reset_index(drop=True)
-home_fixed_odds.columns = ['Date Home', 'Rot Home', 'VH Home', 'Team Home', 'Pitcher Home', 'Final Home', 'Open Home', 'Close Home', 'RL Home', 'Open OU Home', 'Open Line Home,
-'Close OU Home', 'Close Line Home', 'Qualified Pitcher Home', 'F5 Total Home']
 
 away_fixed_odds = fixed_odds.loc[fixed_odds['VH'] == "V"]
 away_fixed_odds = away_fixed_odds.reset_index(drop=True)
 
-complete_fixed_odds = pd.concat([home_fixed_odds, away_fixed_odds], axis=1)
+complete_fixed_odds =home_fixed_odds.merge(away_fixed_odds, on='game_id', how='left')
 
-print(complete_fixed_odds)
+# Clean Dataset, Remove columns
+complete_fixed_odds = complete_fixed_odds.drop(['Rot_x', 'Date_y', 'Rot_y', 'VH_y'], axis=1)
+
+
+
+
+complete_fixed_odds.to_csv('complete-fixed-odds-2018.csv')
