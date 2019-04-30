@@ -20,13 +20,11 @@ divisions = [AL_east, AL_central, AL_west, NL_east, NL_central, NL_west]
 
 # Set startDate, endDate
 today = datetime.date.today()
-current_startDate = (today - datetime.timedelta(days=45)).strftime("%Y-%m-%d")
+current_startDate = (today - datetime.timedelta(days=30)).strftime("%Y-%m-%d")
 current_endDate = (today - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
 
 # Define Functions
 def daily_qualified_pitchers():
-
-    qualified_pitchers = pd.DataFrame()
 
     for i in divisions:
 
@@ -64,70 +62,172 @@ def daily_qualified_pitchers():
             # Column Naming and Export
             df.columns = ['Date', 'Name', 'Tm', 'IP', 'TBF', 'K/9', 'BB/9', 'K/BB', 'HR/9', 'K%', 'BB%', 'K-BB%', 'AVG', 'WHIP', 'BABIP', 'LOB%', 'FIP', 'xFIP']
             df['Date'] = endDate
-            qualified_pitchers = qualified_pitchers.append(df)
+            daily_qualified_pitchers_df.append(df)
             print("Inserted qualified pitchers for on " + endDate)
 
         except AttributeError:
             print("No qualified pitchers for on " + endDate)
             continue
 
-    qualified_pitchers.to_csv('daily-test.csv')
-def daily_team_batters():
+    daily_qualified_pitchers_df.to_csv('1_1.csv')
 
-    team_batters_dataset = pd.DataFrame()
+def daily_team_batters():
 
     endDate = current_endDate
     startDate = current_startDate
 
     relevant_url = 'https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=&splitArrPitch=&position=B&autoPt=false&splitTeams=false&statType=team&statgroup=1&startDate=' + startDate + "&enddate=" + endDate + "&players=&filter=&endDate=" + endDate
 
-    try:
-        # Load URL, Scrap URL
-        url = relevant_url
-        print("Loading Team Batters URL...")
-        driver.get(url)
-        time.sleep(10)
+    # Load URL, Scrap URL
+    url = relevant_url
+    print("Loading Team Batters URL...")
+    driver.get(url)
+    time.sleep(10)
 
-        # Convert to Beautiful Soup
-        htmlSource = driver.page_source
-        soup = BeautifulSoup(htmlSource, 'lxml')
+    # Convert to Beautiful Soup
+    htmlSource = driver.page_source
+    soup = BeautifulSoup(htmlSource, 'lxml')
 
-        # Beautiful Soup Parsing Data Table
-        div_table = soup.find('div', attrs={'class': 'fg-data-grid undefined'})
-        table = div_table.find('table')
-        table_rows = table.find('tbody')
-        rows = table_rows.find_all('tr')
+    # Beautiful Soup Parsing Data Table
+    div_table = soup.find('div', attrs={'class': 'fg-data-grid undefined'})
+    table = div_table.find('table')
+    table_rows = table.find('tbody')
+    rows = table_rows.find_all('tr')
 
-        # Cleaning Text to Data Elements
-        data = []
-        for row in rows:
-            cols = row.find_all('td')
-            cols = cols[0].find_all('td', attrs={'data-stat':'Name'}) + cols[1:]
-            cols = [ele.text.strip() for ele in cols]
-            data.append([ele for ele in cols if ele])
-            df = pd.DataFrame(data)
+    # Cleaning Text to Data Elements
+    data = []
+    for row in rows:
+        cols = row.find_all('td')
+        cols = cols[0].find_all('td', attrs={'data-stat':'Name'}) + cols[1:]
+        cols = [ele.text.strip() for ele in cols]
+        data.append([ele for ele in cols if ele])
+        df = pd.DataFrame(data)
 
-        # Column Naming and Export
-        df.columns = ['Date', 'Tm', 'G', 'PA', 'AB', 'H', '1B', '2B', '3B', 'HR', 'R', 'RBI', 'BB', 'IBB', 'SO', 'HBP', 'SF', 'SH', 'GDP', 'SB', 'CS', 'AVG']
-        df['Date'] = (unformat_endDate + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
-        team_batters_dataset = team_batters_dataset.append(df)
-        print("Inserted team batting stats for " + endDate)
+    # Column Naming and Export
+    df.columns = ['Date', 'Tm', 'G', 'PA', 'AB', 'H', '1B', '2B', '3B', 'HR', 'R', 'RBI', 'BB', 'IBB', 'SO', 'HBP', 'SF', 'SH', 'GDP', 'SB', 'CS', 'AVG']
+    df['Date'] = endDate
+    daily_team_batters_df.append(df)
+    print("Inserted team batting stats for " + endDate)
 
-    except AttributeError:
-        print("No team batting stats for " + endDate)
-        continue
+    daily_team_batters_df.to_csv('1_2.csv')
+
+def daily_team_pitchers_basic():
+
+    endDate = current_endDate
+    startDate = current_startDate
+
+    relevant_url = 'https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=42&splitArrPitch=&position=P&autoPt=false&splitTeams=false&statType=team&statgroup=1&startDate=' + startDate + "&enddate=" + endDate + "&players=&filter=&endDate=" + endDate
+
+    # Load URL, Scrap URL
+    url = relevant_url
+    print("Loading Team Pitchers URL...")
+    driver.get(url)
+    time.sleep(10)
+
+    # Convert to Beautiful Soup
+    htmlSource = driver.page_source
+    soup = BeautifulSoup(htmlSource, 'lxml')
+
+    # Beautiful Soup Parsing Data Table
+    div_table = soup.find('div', attrs={'class': 'fg-data-grid undefined'})
+    table = div_table.find('table')
+    table_rows = table.find('tbody')
+    rows = table_rows.find_all('tr')
+
+    # Cleaning Text to Data Elements
+    data = []
+    for row in rows:
+        cols = row.find_all('td')
+        cols = cols[0].find_all('td', attrs={'data-stat':'Name'}) + cols[1:]
+        cols = [ele.text.strip() for ele in cols]
+        data.append([ele for ele in cols if ele])
+        df = pd.DataFrame(data)
+
+    # Column Naming and Export
+    df.columns = ['Date', 'Tm', 'IP', 'TBF', 'ERA', 'H', '2B', '3B', 'R', 'ER', 'HR', 'BB', 'IBB', 'HBP', 'SO', 'AVG', 'OBP', 'SLG', 'wOBA']
+    df['Date'] = endDate
+    daily_team_pitchers_basic_df.append(df)
+    print("Inserted team pitching stats for " + endDate)
+
+    daily_team_pitchers_basic_df.to_csv('1_3.csv')
+
+def daily_team_pitchers_advanced():
+
+    endDate = current_endDate
+    startDate = current_startDate
+
+    relevant_url = 'https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=42&splitArrPitch=&position=P&autoPt=false&splitTeams=false&statType=team&statgroup=2&startDate=' + startDate + "&enddate=" + endDate + "&players=&filter=&endDate=" + endDate
+
+    # Load URL, Scrap URL
+    url = relevant_url
+    print("Loading Team Pitchers Advanced URL...")
+    driver.get(url)
+    time.sleep(10)
+
+    # Convert to Beautiful Soup
+    htmlSource = driver.page_source
+    soup = BeautifulSoup(htmlSource, 'lxml')
+
+    # Beautiful Soup Parsing Data Table
+    div_table = soup.find('div', attrs={'class': 'fg-data-grid undefined'})
+    table = div_table.find('table')
+    table_rows = table.find('tbody')
+    rows = table_rows.find_all('tr')
+
+    # Cleaning Text to Data Elements
+    data = []
+    for row in rows:
+        cols = row.find_all('td')
+        cols = cols[0].find_all('td', attrs={'data-stat':'Name'}) + cols[1:]
+        cols = [ele.text.strip() for ele in cols]
+        data.append([ele for ele in cols if ele])
+        df = pd.DataFrame(data)
+
+    # Column Naming and Export
+    df.columns = ['Date', 'Tm', 'IP', 'TBF', 'K/9', 'BB/9', 'K/BB', 'HR/9', 'K%', 'BB%', 'K-BB%', 'AVG', 'WHIP', 'BABIP', 'LOB%', 'FIP', 'xFIP']
+    df['Date'] = endDate
+    daily_team_pitchers_advanced_df.append(df)
+    print("Inserted team advanced pitching stats for " + endDate)
+
+    daily_team_pitchers_advanced_df.to_csv('1_4.csv')
+############ def daily_splits_R():
+############ def daily_splits_L():
+############ def daily_lineups():
+############ def daily_qualified_batters():
+
+# Create dataset
+daily_qualified_pitchers_df = pd.DataFrame()
+daily_team_batters_df = pd.DataFrame()
+daily_team_pitchers_basic_df = pd.DataFrame()
+daily_team_pitchers_advanced_df = pd.DataFrame()
+
 
 # Run Web Scrape Functions
 daily_qualified_pitchers()
 daily_team_batters()
+daily_team_pitchers_basic()
+daily_team_pitchers_advanced()
+### daily_splits_R():
+### daily_splits_L():
+### daily_lineups():
+### daily_qualified_batters():
 
-# BaseRuns Calcs
-all_team_batters['TB'] = (1 * all_team_batters['1B']) + (2 * all_team_batters['2B']) + (3 * all_team_batters['3B']) + (4 * all_team_batters['HR'])
-all_team_batters['varA'] = all_team_batters['H'] + all_team_batters['BB'] + all_team_batters['HBP'] - all_team_batters['HR'] - .5 * all_team_batters['IBB']
-all_team_batters['varB'] = (1.4 * all_team_batters['TB'] - .6 * all_team_batters['H'] - 3 * all_team_batters['HR'] + .1 * (all_team_batters['BB'] + all_team_batters['HBP'] - all_team_batters['IBB']) + .9 * (all_team_batters['SB'] - all_team_batters['CS'] - all_team_batters['GDP'])) * 1.1
-all_team_batters['varC'] = all_team_batters['AB'] - all_team_batters['H'] + all_team_batters['CS'] + all_team_batters['GDP']
-all_team_batters['varD'] = all_team_batters['HR']
+# BaseRuns Scored
+daily_team_batters_df['TB'] = (1 * daily_team_batters_df['1B']) + (2 * daily_team_batters_df['2B']) + (3 * daily_team_batters_df['3B']) + (4 * daily_team_batters_df['HR'])
+daily_team_batters_df['varA'] = daily_team_batters_df['H'] + daily_team_batters_df['BB'] + daily_team_batters_df['HBP'] - daily_team_batters_df['HR'] - .5 * daily_team_batters_df['IBB']
+daily_team_batters_df['varB'] = (1.4 * daily_team_batters_df['TB'] - .6 * daily_team_batters_df['H'] - 3 * daily_team_batters_df['HR'] + .1 * (daily_team_batters_df['BB'] + daily_team_batters_df['HBP'] - daily_team_batters_df['IBB']) + .9 * (daily_team_batters_df['SB'] - daily_team_batters_df['CS'] - daily_team_batters_df['GDP'])) * 1.1
+daily_team_batters_df['varC'] = daily_team_batters_df['AB'] - daily_team_batters_df['H'] + daily_team_batters_df['CS'] + daily_team_batters_df['GDP']
+daily_team_batters_df['varD'] = daily_team_batters_df['HR']
+daily_team_batters_df.drop_duplicates(inplace=True)
 
-all_team_batters.drop_duplicates(inplace=True)
+# BaseRuns Allowed
+daily_team_pitchers_basic_df['varA'] = daily_team_pitchers_basic_df['H'] + daily_team_pitchers_basic_df['BB'] - daily_team_pitchers_basic_df['HR']
+daily_team_pitchers_basic_df['varB'] = (1.4 * (1.12 * daily_team_pitchers_basic_df['H'] + 4 * daily_team_pitchers_basic_df['HR']) - .6 * daily_team_pitchers_basic_df['H'] - 3 * daily_team_pitchers_basic_df['HR'] + .1 * daily_team_pitchers_basic_df['BB']) * 1.1
+daily_team_pitchers_basic_df['varC'] = 3 * daily_team_pitchers_basic_df['IP']
+daily_team_pitchers_basic_df['varD'] = daily_team_pitchers_basic_df['HR']
+daily_team_pitchers_basic_df.drop_duplicates(inplace=True)
 
-all_team_batters['BsR_Sc_Season'] = ((all_team_batters['varA'] * all_team_batters['varB']) / (all_team_batters['varB'] + all_team_batters['varC'])) + all_team_batters['varD']
+# Create Calculations Dataset
+lines_dataset = pd.DataFrame()
+lines_dataset['BsR_Sc_Season'] = ((daily_team_batters_df['varA'] * daily_team_batters_df['varB']) / (daily_team_batters_df['varB'] + daily_team_batters_df['varC'])) + daily_team_batters_df['varD']
+lines_dataset['BsR_Al_Season'] = ((daily_team_pitchers_basic_df['varA'] * daily_team_pitchers_basic_df['varB']) / (daily_team_pitchers_basic_df['varB'] + daily_team_pitchers_basic_df['varC'])) + daily_team_pitchers_basic_df['varD']
