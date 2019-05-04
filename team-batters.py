@@ -7,7 +7,7 @@ import urllib.request
 
 # Load Webdriver, could be replaced by GeckoDriver as PhantomJS is deprecated
 phantomjs_driver = 'C:\phantomjs\bin\phantomjs'
-driver = webdriver.PhantomJS()
+driver = webdriver.PhantomJS(executable_path='/Users/hstrohm/Desktop/mlb/node_modules/phantomjs/bin/phantomjs')
 
 """"
 # Set startDate, endDate
@@ -17,7 +17,7 @@ current_endDate = today.strftime("%Y%m%d")
 """
 
 # Date and Function Function
-dates = pd.date_range(pd.datetime(2018,4,5), periods=10)
+dates = pd.date_range(pd.datetime(2018,3,28), periods=225)
 
 def team_batters():
 

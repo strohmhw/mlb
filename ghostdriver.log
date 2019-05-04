@@ -1,79 +1,93 @@
-[INFO  - 2019-04-11T13:22:07.201Z] GhostDriver - Main - running on port 62703
-[INFO  - 2019-04-11T13:22:11.777Z] Session [d092f7b0-5c5c-11e9-89a8-db5b80393730] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
-[INFO  - 2019-04-11T13:22:11.777Z] Session [d092f7b0-5c5c-11e9-89a8-db5b80393730] - page.customHeaders:  - {}
-[INFO  - 2019-04-11T13:22:11.778Z] Session [d092f7b0-5c5c-11e9-89a8-db5b80393730] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
-[INFO  - 2019-04-11T13:22:11.778Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: d092f7b0-5c5c-11e9-89a8-db5b80393730
-[INFO  - 2019-04-11T13:27:07.202Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T13:32:07.202Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T13:37:07.202Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T13:42:07.205Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[ERROR - 2019-04-11T13:42:33.615Z] Session [d092f7b0-5c5c-11e9-89a8-db5b80393730] - page.onError - msg: ReferenceError: Can't find variable: googletag
+[INFO  - 2019-04-23T02:08:58.270Z] GhostDriver - Main - running on port 53522
+[INFO  - 2019-04-23T02:08:58.395Z] Session [c135c270-656c-11e9-8f8a-07f11995f390] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2019-04-23T02:08:58.395Z] Session [c135c270-656c-11e9-8f8a-07f11995f390] - page.customHeaders:  - {}
+[INFO  - 2019-04-23T02:08:58.395Z] Session [c135c270-656c-11e9-8f8a-07f11995f390] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"mac-unknown-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2019-04-23T02:08:58.395Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: c135c270-656c-11e9-8f8a-07f11995f390
+[ERROR - 2019-04-23T02:13:16.083Z] Session [c135c270-656c-11e9-8f8a-07f11995f390] - page.onError - msg: viewport has zero dimensions
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2019-04-11T13:42:33.616Z] Session [d092f7b0-5c5c-11e9-89a8-db5b80393730] - page.onError - stack:
+[ERROR - 2019-04-23T02:13:16.083Z] Session [c135c270-656c-11e9-8f8a-07f11995f390] - page.onError - stack:
+  Ag (https://cdn.ampproject.org/rtv/011904091426070/amp4ads-v0.js:141)
+
+  phantomjs://platform/console++.js:263 in error
+[INFO  - 2019-04-23T02:13:58.271Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[ERROR - 2019-04-23T02:16:50.187Z] Session [c135c270-656c-11e9-8f8a-07f11995f390] - page.onError - msg: ReferenceError: Can't find variable: googletag
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2019-04-23T02:16:50.187Z] Session [c135c270-656c-11e9-8f8a-07f11995f390] - page.onError - stack:
   p (https://c.amazon-adsystem.com/aax2/apstag.js:2)
 
   phantomjs://platform/console++.js:263 in error
-[INFO  - 2019-04-11T13:47:07.206Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[ERROR - 2019-04-11T13:51:32.883Z] Session [d092f7b0-5c5c-11e9-89a8-db5b80393730] - page.onError - msg: SyntaxError: DOM Exception 12: An invalid or illegal string was specified.
+[INFO  - 2019-04-23T02:19:02.610Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[ERROR - 2019-04-23T02:19:53.514Z] Session [c135c270-656c-11e9-8f8a-07f11995f390] - page.onError - msg: TypeError: undefined is not a constructor (evaluating 'Array[b('0x9')](document[b('0xa')](b('0xb')))')
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2019-04-11T13:51:32.883Z] Session [d092f7b0-5c5c-11e9-89a8-db5b80393730] - page.onError - stack:
-  querySelector (https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=42,179,183,184,191,192&splitArrPitch=&position=P&autoPt=true&splitTeams=false&statType=player&statgroup=2&startDate=2018-06-17&players=&endDate=2018-08-01&filter=IP%7Cgt%7C20:1)
-  (anonymous function) (https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=42,179,183,184,191,192&splitArrPitch=&position=P&autoPt=true&splitTeams=false&statType=player&statgroup=2&startDate=2018-06-17&players=&endDate=2018-08-01&filter=IP%7Cgt%7C20:1)
+[ERROR - 2019-04-23T02:19:53.514Z] Session [c135c270-656c-11e9-8f8a-07f11995f390] - page.onError - stack:
+  j (https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=42&splitArrPitch=&position=P&autoPt=false&splitTeams=false&statType=team&statgroup=2&startDate=2018-03-04&enddate=2018-04-18&players=&filter=&endDate=2018-04-18:1)
+  (anonymous function) (https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=42&splitArrPitch=&position=P&autoPt=false&splitTeams=false&statType=team&statgroup=2&startDate=2018-03-04&enddate=2018-04-18&players=&filter=&endDate=2018-04-18:1)
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2019-04-11T13:51:33.263Z] Session [d092f7b0-5c5c-11e9-89a8-db5b80393730] - page.onError - msg: TypeError: undefined is not a constructor (evaluating 'Array[b('0x9')](document[b('0xa')](b('0xb')))')
+[INFO  - 2019-04-23T02:24:02.611Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-23T02:32:00.552Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-23T02:38:50.469Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-23T02:43:50.471Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-23T02:48:50.474Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-23T02:53:51.051Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-23T02:58:51.053Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[ERROR - 2019-04-23T03:02:32.857Z] Session [c135c270-656c-11e9-8f8a-07f11995f390] - page.onError - msg: viewport has zero dimensions
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2019-04-11T13:51:33.263Z] Session [d092f7b0-5c5c-11e9-89a8-db5b80393730] - page.onError - stack:
-  j (https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=42,179,183,184,191,192&splitArrPitch=&position=P&autoPt=true&splitTeams=false&statType=player&statgroup=2&startDate=2018-06-17&players=&endDate=2018-08-01&filter=IP%7Cgt%7C20:1)
-  (anonymous function) (https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=42,179,183,184,191,192&splitArrPitch=&position=P&autoPt=true&splitTeams=false&statType=player&statgroup=2&startDate=2018-06-17&players=&endDate=2018-08-01&filter=IP%7Cgt%7C20:1)
+[ERROR - 2019-04-23T03:02:32.857Z] Session [c135c270-656c-11e9-8f8a-07f11995f390] - page.onError - stack:
+  Ag (https://cdn.ampproject.org/rtv/011904091426070/amp4ads-v0.js:141)
 
   phantomjs://platform/console++.js:263 in error
-[INFO  - 2019-04-11T13:52:07.216Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T13:57:07.216Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T14:02:07.218Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[ERROR - 2019-04-11T14:02:19.751Z] Session [d092f7b0-5c5c-11e9-89a8-db5b80393730] - page.onError - msg: ReferenceError: Can't find variable: googletag
+[ERROR - 2019-04-23T03:03:49.327Z] Session [c135c270-656c-11e9-8f8a-07f11995f390] - page.onError - msg: ReferenceError: Can't find variable: googletag
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2019-04-11T14:02:19.752Z] Session [d092f7b0-5c5c-11e9-89a8-db5b80393730] - page.onError - stack:
+[ERROR - 2019-04-23T03:03:49.328Z] Session [c135c270-656c-11e9-8f8a-07f11995f390] - page.onError - stack:
   p (https://c.amazon-adsystem.com/aax2/apstag.js:2)
 
   phantomjs://platform/console++.js:263 in error
-[INFO  - 2019-04-11T14:07:07.218Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T14:12:07.222Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T14:17:07.222Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T14:22:07.303Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T14:27:07.258Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[ERROR - 2019-04-11T14:28:18.160Z] Session [d092f7b0-5c5c-11e9-89a8-db5b80393730] - page.onError - msg: TypeError: undefined is not a constructor (evaluating 'window.prepareIndex()')
+[INFO  - 2019-04-23T03:03:51.056Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-23T03:08:51.055Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[ERROR - 2019-04-23T03:12:01.299Z] Session [c135c270-656c-11e9-8f8a-07f11995f390] - page.onError - msg: viewport has zero dimensions
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2019-04-11T14:28:18.161Z] Session [d092f7b0-5c5c-11e9-89a8-db5b80393730] - page.onError - stack:
-  (anonymous function) (https://cdn.flashtalking.com/98121/Disney_ES6_Template_2.5__default__728x90_FT_RICH/index.html:354)
-  (anonymous function) (https://cdn.flashtalking.com/98121/Disney_ES6_Template_2.5__default__728x90_FT_RICH/index.html:354)
-  n (https://cdn.flashtalking.com/98121/Disney_ES6_Template_2.5__default__728x90_FT_RICH/index.html:354)
-  (anonymous function) (https://cdn.flashtalking.com/98121/Disney_ES6_Template_2.5__default__728x90_FT_RICH/index.html:354)
+[ERROR - 2019-04-23T03:12:01.299Z] Session [c135c270-656c-11e9-8f8a-07f11995f390] - page.onError - stack:
+  Ag (https://cdn.ampproject.org/rtv/011904091426070/amp4ads-v0.js:141)
 
   phantomjs://platform/console++.js:263 in error
-[INFO  - 2019-04-11T14:32:07.603Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T14:37:07.581Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T14:42:07.582Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T14:47:07.583Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T14:52:07.591Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T14:57:07.592Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T15:02:07.600Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T15:07:07.608Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T15:12:08.391Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T15:17:08.391Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T15:22:08.402Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T15:27:08.402Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T15:32:08.404Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T15:37:08.406Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T15:42:08.423Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T15:47:08.423Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T15:52:08.564Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T15:57:08.566Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T16:02:08.576Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T16:07:08.579Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[INFO  - 2019-04-11T16:12:08.579Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-23T03:13:51.055Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-23T03:18:51.075Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-23T03:23:52.741Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[ERROR - 2019-04-23T05:42:28.488Z] Session [c135c270-656c-11e9-8f8a-07f11995f390] - page.onError - msg: NETWORK_ERR: XMLHttpRequest Exception 101: A network error occurred in synchronous requests.
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2019-04-23T05:42:28.488Z] Session [c135c270-656c-11e9-8f8a-07f11995f390] - page.onError - stack:
+  send (https://beacon.s-onetag.com/beacon.min.js:14)
+  pa (https://beacon.s-onetag.com/beacon.min.js:14)
+  o (https://beacon.s-onetag.com/beacon.min.js:22)
+  f (https://beacon.s-onetag.com/beacon.min.js:22)
+  (anonymous function) (:0)
+  l (https://beacon.s-onetag.com/beacon.min.js:7)
+  i (https://beacon.s-onetag.com/beacon.min.js:6)
+  (anonymous function) (:0)
+  C (https://beacon.s-onetag.com/beacon.min.js:7)
+  ha (https://beacon.s-onetag.com/beacon.min.js:11)
+  (anonymous function) (:0)
+  c (https://beacon.s-onetag.com/beacon.min.js:8)
+  c (:0)
+  openUrl (:0)
+  open (phantomjs://platform/webpage.js:281)
+  (anonymous function) (phantomjs://code/session_request_handler.js:495)
+  _execFuncAndWaitForLoadDecorator (phantomjs://code/session.js:212)
+  _postUrlCommand (phantomjs://code/session_request_handler.js:494)
+  _handle (phantomjs://code/session_request_handler.js:91)
+  _reroute (phantomjs://code/request_handler.js:61)
+  _handle (phantomjs://code/router_request_handler.js:78)
+
+  phantomjs://platform/console++.js:263 in error
+[INFO  - 2019-04-23T05:42:45.396Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-23T08:11:46.069Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-23T10:53:15.568Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-04-23T22:55:47.700Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
