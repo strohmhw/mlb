@@ -43,7 +43,7 @@ def relief_individual():
         #################################
         #################################
 
-        relevant_url = 'https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=42,' + division + '&splitArrPitch=&position=RP&autoPt=true&splitTeams=false&statType=player&statgroup=2&startDate=' + startDate + "&players=&endDate=" + endDate + '&filter=IP%7Cgt%7C0'
+        relevant_url = 'https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=43,' + division + '&splitArrPitch=&position=P&autoPt=true&splitTeams=false&statType=player&statgroup=2&startDate=' + startDate + "&players=&endDate=" + endDate + '&filter=IP%7Cgt%7C0'
 
         try:
             # Load URL, Scrap URL

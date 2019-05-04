@@ -61,8 +61,13 @@ def team_pitchers():
                 df = pd.DataFrame(data)
 
             # Column Naming and Export
+<<<<<<< HEAD
             #df.columns = ['Date', 'Tm', 'IP', 'TBF', 'K/9', 'BB/9', 'K/BB', 'HR/9', 'K%', 'BB%', 'K-BB%', 'AVG', 'WHIP', 'BABIP', 'LOB%', 'FIP', 'xFIP']
             #df['Date'] = (unformat_endDate + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+=======
+            df.columns = ['Date', 'Tm', 'IP', 'TBF', 'ERA', 'H', '2B', '3B', 'R', 'ER', 'HR', 'BB', 'IBB', 'HBP', 'SO', 'AVG', 'OBP', 'SLG', 'wOBA']
+            df['Date'] = (unformat_endDate + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+>>>>>>> efe7d2b00be02111399c27ff9c7f9399894f8646
             team_pitchers_dataset = team_pitchers_dataset.append(df)
             print("Inserted team pitching stats for " + endDate)
 

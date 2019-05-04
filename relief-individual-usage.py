@@ -38,9 +38,9 @@ def relief_individual_usage():
         startDate = (unformat_endDate - datetime.timedelta(days=7)).strftime("%Y-%m-%d")
 
         for x in divisions:
-            division = AL_east
-            print(division
-            relevant_url = 'https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=42,' + division + '&splitArrPitch=&position=RP&autoPt=true&splitTeams=false&statType=player&statgroup=2&startDate=' + startDate + "&players=&endDate=" + endDate + '&filter=IP%7Cgt%7C0'
+            division = x
+
+            relevant_url = 'https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=43,' + division + '&splitArrPitch=&position=P&autoPt=true&splitTeams=false&statType=player&statgroup=2&startDate=' + startDate + "&players=&endDate=" + endDate + '&filter=IP%7Cgt%7C0'
 
             try:
                 # Load URL, Scrap URL
