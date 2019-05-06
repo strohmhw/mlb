@@ -39,7 +39,7 @@ def team_pitchers():
             url = relevant_url
             print("Loading Team Pitchers URL...")
             driver.get(url)
-            time.sleep(10)
+            time.sleep(5)
 
             # Convert to Beautiful Soup
             htmlSource = driver.page_source

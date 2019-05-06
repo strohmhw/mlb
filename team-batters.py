@@ -7,7 +7,7 @@ import urllib.request
 
 # Load Webdriver, could be replaced by GeckoDriver as PhantomJS is deprecated
 phantomjs_driver = 'C:\phantomjs\bin\phantomjs'
-driver = webdriver.PhantomJS()
+driver = webdriver.PhantomJS(executable_path='/Users/hstrohm/Desktop/mlb/node_modules/phantomjs/bin/phantomjs')
 
 """"
 # Set startDate, endDate
