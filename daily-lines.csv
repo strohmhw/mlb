@@ -1,34 +1,13 @@
 ,Away Team,Away Pitcher,Away pHand,Home Team,Home Pitcher,Home pHand,Westgate Home Line,Westgate Away Line,Home Symbol,Away Symbol
-<<<<<<< HEAD
-0,Minnesota,J. Odorizzi,R,NY Yankees,J. Happ,L,-125,115,NYY,MIN
-1,St. Louis,M. Wacha,R,Chi Cubs,Y. Darvish,R,-125,115,CHC,STL
-2,Kansas City,H. Bailey,R,Detroit,T. Ross,R,-120,110,DET,KCR
-3,Seattle,M. Leake,R,Cleveland,C. Carrasco,R,-210,185,CLE,SEA
-4,Atlanta,M. Soroka,R,Miami,T. Richards,R,155,-165,MIA,ATL
-5,Oakland,C. Bassitt,R,Pittsburgh,T. Williams,R,-105,-105,PIT,OAK
-6,Tampa Bay,R. Stanek,R,Baltimore,D. Bundy,R,160,-175,BAL,TBR
-7,Washington,P. Corbin,L,Philadelphia,J. Arrieta,R,-120,110,PHI,
-8,Boston,E. Rodriguez,L,Chi White Sox,M. Banuelos,L,160,-170,CHW,BOS
-9,Houston,W. Miley,L,LA Angels,T. Cahill,R,120,-130,LAA,HOU
-10,NY Mets,Z. Wheeler,R,Milwaukee,G. Gonzalez,L,-115,105,MIL,NYM
-11,San Francisco,D. Rodriguez,R,Cincinnati,T. Roark,R,-125,115,CIN,SFG
-12,Toronto,T. Pannone,L,Texas,L. Lynn,R,-125,115,TEX,TOR
-13,Arizona,L. Weaver,R,Colorado,K. Freeland,L,-130,120,COL,ARI
-14,LA Dodgers,R. Hill,L,San Diego,J. Lucchesi,L,110,-120,SDP,LAD
-=======
-0,Kansas City,B. Keller,R,Detroit,S. Turnbull,R, -125, 115,DET,KCR
-1,Tampa Bay,R. Stanek,R,Baltimore,J. Means,L,,,BAL,TBR
-2,Seattle,E. Swanson,R,Cleveland,C. Anderson,R, -140, 130,CLE,SEA
-3,Atlanta,J. Teheran,R,Miami,P. Lopez,R, 105, -115,MIA,ATL
-4,Oakland,F. Montas,R,Pittsburgh,J. Lyles,R, 105, -115,PIT,OAK
-5,Washington,A. Sanchez,R,Philadelphia,Z. Eflin,R, -160, 150,PHI,
-6,Boston,R. Porcello,R,Chi White Sox,D. Covey,R,,,CHW,BOS
-7,NY Mets,J. Vargas,L,Milwaukee,Z. Davies,R, -145, 135,MIL,NYM
-8,Toronto,C. Buchholz,R,Texas,D. Smyly,L, -130, 120,TEX,TOR
-9,Arizona,Z. Greinke,R,Colorado,G. Marquez,R, -135, 125,COL,ARI
-10,Houston,J. Verlander,R,LA Angels,M. Harvey,R, 200, -220,LAA,HOU
-11,Minnesota,M. Pineda,R,NY Yankees,D. German,R, -135, 125,NYY,MIN
-12,LA Dodgers,K. Maeda,R,San Diego,N. Margevicius,L, 125, -135,SDP,LAD
-13,San Francisco,J. Samardzija,R,Cincinnati,L. Castillo,R, -180, 165,CIN,SFG
-14,St. Louis,A. Wainwright,R,Chi Cubs,J. Quintana,L,,,CHC,STL
->>>>>>> 7afc62d5339176969c19648ed360adf27482427e
+0,San Francisco,D. Pomeranz,L,Cincinnati,A. DeSclafani,R, -145, 135,CIN,SFG
+1,Chi White Sox,I. Nova,R,Cleveland,T. Bauer,R, -260, 230,CLE,CHW
+2,Seattle,F. Hernandez,R,NY Yankees,C. Sabathia,L, -145, 135,NYY,SEA
+3,Boston,J. Smith,R,Baltimore,J. Means,L, 145, -155,BAL,BOS
+4,Minnesota,M. Perez,L,Toronto,M. Stroman,R, -110, -100,TOR,MIN
+5,Arizona,M. Kelly,R,Tampa Bay,B. Snell,L, -210, 185,TBR,ARI
+6,Washington,M. Scherzer,R,Milwaukee,J. Chacin,R, -105, -105,MIL,WSN
+7,Philadelphia,V. Velasquez,R,St. Louis,M. Mikolas,R, -125, 115,STL,PHI
+8,Miami,S. Alcantara,R,Chi Cubs,C. Hamels,L, -280, 250,CHC,MIA
+9,Kansas City,J. Junis,R,Houston,G. Cole,R, -280, 250,HOU,KCR
+10,NY Mets,J. deGrom,R,San Diego,C. Paddack,R, 105, -115,SDP,NYM
+11,Atlanta,M. Fried,L,LA Dodgers,W. Buehler,R, -160, 150,LAD,ATL

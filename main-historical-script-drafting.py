@@ -10,58 +10,59 @@ NL_east = pd.read_csv('qualified-pitchers/nl-east-qualified-pitchers.csv')
 NL_central = pd.read_csv('qualified-pitchers/nl-central-qualified-pitchers.csv')
 NL_west = pd.read_csv('qualified-pitchers/nl-west-qualified-pitchers.csv')
 
-all_team_pitchers = pd.read_csv('team-pitchers-dataset-basic.csv')
-all_team_batters = pd.read_csv('team-batters-dataset.csv')
-all_team_pitchers_adv = pd.read_csv('team-pitchers-dataset.csv')
+team_batters_df_2018 = pd.read_csv('historical-backtest/team-batters-dataset-2018.csv')
+team_pitchers_basic_df_2018 = pd.read_csv('historical-backtest/team-pitchers-dataset-2018.csv')
+team_Spitchers_advanced_df_2018 = pd.read_csv('historical-backtest/team-Spitchers-advanced-dataset-2018.csv')
+team_batters_vsL_advanced_df_2018 = pd.read_csv('   .csv')
+team_batters_vsR_advanced_df_2018 = pd.read_csv('     .csv')
+team_batters_vsAll_advanced_df_2018 = pd.read_csv('   .csv')
 
 # Combine CSV Data Files, Add Columns
-all_qualified_pitchers = pd.DataFrame()
-all_qualified_pitchers = all_qualified_pitchers.append([AL_east, AL_central, AL_west, NL_east, NL_central, NL_west])
-all_qualified_pitchers = all_qualified_pitchers.reset_index(drop=True)
+qualified_pitchers_df_2018 = pd.DataFrame()
+qualified_pitchers_df_2018 = qualified_pitchers_df_2018.append([AL_east, AL_central, AL_west, NL_east, NL_central, NL_west])
+qualified_pitchers_df_2018 = qualified_pitchers_df_2018.reset_index(drop=True)
 
-all_team_pitchers['Date'] = (pd.to_datetime(all_team_pitchers['Date'])).astype(str)
+qualified_pitchers_df_2018['team_date'] = (qualified_pitchers_df_2018['Tm'] + qualified_pitchers_df_2018['Date']).astype(str)
+team_batters_df_2018['team_date'] = (team_batters_df_2018['Tm'] + team_batters_df_2018['Date']).astype(str)
+team_pitchers_basic_df_2018['team_date'] = (team_pitchers_basic_df_2018['Tm'] + team_pitchers_basic_df_2018['Date']).astype(str)
+team_Spitchers_advanced_df_2018['team_date'] = (team_Spitchers_advanced_df_2018['Tm'] + team_Spitchers_advanced_df_2018['Date']).astype(str)
+team_batters_vsL_advanced_df_2018['team_date'] =
+team_batters_vsR_advanced_df_2018['team_date'] =
+team_batters_vsAll_advanced_df_2018['team_date'] =
 
-all_qualified_pitchers['team_date'] = (all_qualified_pitchers['Tm'] + all_qualified_pitchers['Date']).astype(str)
-all_team_pitchers['team_date'] = (all_team_pitchers['Tm'] + all_team_pitchers['Date']).astype(str)
-all_team_pitchers_adv['team_date'] = (all_team_pitchers_adv['Tm'] + all_team_pitchers_adv['Date']).astype(str)
-all_team_batters['team_date'] = (all_team_batters['Tm'] + all_team_batters['Date']).astype(str)
 
 # Create 'Pitcher Adjusted Values' in xFIP for Each Day
-team_date_xFIP = pd.Series(all_team_pitchers_adv.xFIP.values,index=all_team_pitchers_adv.team_date).to_dict()
-all_qualified_pitchers['team_xFIP'] = all_qualified_pitchers['team_date'].map(team_date_xFIP)
-print(all_qualified_pitchers)
-all_qualified_pitchers['xFIP_diff'] = all_qualified_pitchers['xFIP'] - all_qualified_pitchers['team_xFIP']
-print(all_qualified_pitchers)
+team_date_xFIP = pd.Series(team_Spitchers_advanced_df_2018.xFIP.values,index=team_Spitchers_advanced_df_2018.team_date).to_dict()
+qualified_pitchers_df_2018['team_xFIP'] = qualified_pitchers_df_2018['team_date'].map(team_date_xFIP)
+qualified_pitchers_df_2018['xFIP_diff'] = qualified_pitchers_df_2018['xFIP'] - qualified_pitchers_df_2018['team_xFIP']
 
 # Hitting BaseRuns Calcs
-all_team_batters['TB'] = (1 * all_team_batters['1B']) + (2 * all_team_batters['2B']) + (3 * all_team_batters['3B']) + (4 * all_team_batters['HR'])
-all_team_batters['varA'] = all_team_batters['H'] + all_team_batters['BB'] + all_team_batters['HBP'] - all_team_batters['HR'] - .5 * all_team_batters['IBB']
-all_team_batters['varB'] = (1.4 * all_team_batters['TB'] - .6 * all_team_batters['H'] - 3 * all_team_batters['HR'] + .1 * (all_team_batters['BB'] + all_team_batters['HBP'] - all_team_batters['IBB']) + .9 * (all_team_batters['SB'] - all_team_batters['CS'] - all_team_batters['GDP'])) * 1.1
-all_team_batters['varC'] = all_team_batters['AB'] - all_team_batters['H'] + all_team_batters['CS'] + all_team_batters['GDP']
-all_team_batters['varD'] = all_team_batters['HR']
-
-all_team_batters.drop_duplicates(inplace=True)
-
-all_team_batters['BsR_Sc_Season'] = ((all_team_batters['varA'] * all_team_batters['varB']) / (all_team_batters['varB'] + all_team_batters['varC'])) + all_team_batters['varD']
+team_batters_df_2018['TB'] = (1 * team_batters_df_2018['1B']) + (2 * team_batters_df_2018['2B']) + (3 * team_batters_df_2018['3B']) + (4 * team_batters_df_2018['HR'])
+team_batters_df_2018['varA'] = team_batters_df_2018['H'] + team_batters_df_2018['BB'] + team_batters_df_2018['HBP'] - team_batters_df_2018['HR'] - .5 * team_batters_df_2018['IBB']
+team_batters_df_2018['varB'] = (1.4 * team_batters_df_2018['TB'] - .6 * team_batters_df_2018['H'] - 3 * team_batters_df_2018['HR'] + .1 * (team_batters_df_2018['BB'] + team_batters_df_2018['HBP'] - team_batters_df_2018['IBB']) + .9 * (team_batters_df_2018['SB'] - team_batters_df_2018['CS'] - team_batters_df_2018['GDP'])) * 1.1
+team_batters_df_2018['varC'] = team_batters_df_2018['AB'] - team_batters_df_2018['H'] + team_batters_df_2018['CS'] + team_batters_df_2018['GDP']
+team_batters_df_2018['varD'] = team_batters_df_2018['HR']
+team_batters_df_2018.drop_duplicates(inplace=True)
+team_batters_df_2018['BsR_Sc_Season'] = ((team_batters_df_2018['varA'] * team_batters_df_2018['varB']) / (team_batters_df_2018['varB'] + team_batters_df_2018['varC'])) + team_batters_df_2018['varD']
 
 # Pitching BaseRuns Calcs
-all_team_pitchers['varA'] = all_team_pitchers['H'] + all_team_pitchers['BB'] - all_team_pitchers['HR']
-all_team_pitchers['varB'] = (1.4 * (1.12 * all_team_pitchers['H'] + 4 * all_team_pitchers['HR']) - .6 * all_team_pitchers['H'] - 3 * all_team_pitchers['HR'] + .1 * all_team_pitchers['BB']) * 1.1
-all_team_pitchers['varC'] = 3 * all_team_pitchers['IP']
-all_team_pitchers['varD'] = all_team_pitchers['HR']
-
-
-all_team_pitchers['BsR_Al_Season'] = ((all_team_pitchers['varA'] * all_team_pitchers['varB']) / (all_team_pitchers['varB'] + all_team_pitchers['varC'])) + all_team_pitchers['varD']
+team_pitchers_basic_df_2018['varA'] = team_pitchers_basic_df_2018['H'] + team_pitchers_basic_df_2018['BB'] - team_pitchers_basic_df_2018['HR']
+team_pitchers_basic_df_2018['varB'] = (1.4 * (1.12 * team_pitchers_basic_df_2018['H'] + 4 * team_pitchers_basic_df_2018['HR']) - .6 * team_pitchers_basic_df_2018['H'] - 3 * team_pitchers_basic_df_2018['HR'] + .1 * team_pitchers_basic_df_2018['BB']) * 1.1
+team_pitchers_basic_df_2018['varC'] = 3 * team_pitchers_basic_df_2018['IP']
+team_pitchers_basic_df_2018['varD'] = team_pitchers_basic_df_2018['HR']
+team_pitchers_basic_df_2018.drop_duplicates(inplace=True)
+team_pitchers_basic_df_2018['BsR_Al_Season'] = ((team_pitchers_basic_df_2018['varA'] * team_pitchers_basic_df_2018['varB']) / (team_pitchers_basic_df_2018['varB'] + team_pitchers_basic_df_2018['varC'])) + team_pitchers_basic_df_2018['varD']
 
 # Creating Model table
-model_table_batters = all_team_batters[['team_date', 'BsR_Sc_Season']]
-model_table_pitchers = all_team_pitchers[['team_date', 'BsR_Al_Season']]
-model_table_xFIP = all_qualified_pitchers[['team_date', 'IP', 'xFIP_diff']]
+model_table_batters = team_batters_df_2018[['team_date', 'BsR_Sc_Season']]
+model_table_pitchers = team_pitchers_basic_df_2018[['team_date', 'BsR_Al_Season']]
+model_table_xFIP = qualified_pitchers_df_2018[['team_date', 'IP', 'xFIP_diff']]
 
 model_table = model_table_batters.merge(model_table_pitchers, on="team_date", how="left")
 model_table = model_table.merge(model_table_xFIP, on="team_date", how="left")
-
+print(model_table)
 model_table['team_date_1'] = model_table['team_date']
+model_table.to_csv('final_model_table.csv')
 
 # Import Odds Files
 odds = pd.read_csv('complete_fixed_odds.csv')

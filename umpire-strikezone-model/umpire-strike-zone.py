@@ -9,8 +9,8 @@ import datetime as dt
 from datetime import timedelta, date
 
 # Load Called Pitches CSV File For Training
-data = pd.read_csv('statcast-all-2017-short.csv', low_memory=False)
-game_totals_results = pd.read_csv('MLB-Games-2017.csv')
+data = pd.read_csv('umpire-strikezone-model/statcast-all-2017-short.csv', low_memory=False)
+game_totals_results = pd.read_csv('umpire-strikezone-model/MLB-Games-2017.csv')
 games = pd.DataFrame(data)
 
 # Clean Data and Create Called Pitches Dataset
