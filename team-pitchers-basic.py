@@ -7,7 +7,7 @@ import urllib.request
 
 # Load Webdriver, could be replaced by GeckoDriver as PhantomJS is deprecated
 phantomjs_driver = 'C:\phantomjs\bin\phantomjs'
-driver = webdriver.PhantomJS(executable_path='/Users/hstrohm/Desktop/mlb/node_modules/phantomjs/bin/phantomjs')
+driver = webdriver.PhantomJS()#executable_path='/Users/hstrohm/Desktop/mlb/node_modules/phantomjs/bin/phantomjs')
 
 """"
 # Set startDate, endDate
@@ -70,7 +70,7 @@ def team_pitchers():
             print("No team pitching stats for " + endDate)
             continue
 
-    team_pitchers_dataset.to_csv('team-pitchers-dataset-basic.csv')
+    team_pitchers_dataset.to_csv('team-pitchers-dataset-2018.csv')
 
 # Run Functions
 team_pitchers()

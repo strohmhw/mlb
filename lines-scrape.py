@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 
 phantomjs_driver = 'C:\phantomjs\bin\phantomjs'
-driver = webdriver.PhantomJS(executable_path='/Users/hstrohm/Desktop/mlb/node_modules/phantomjs/bin/phantomjs')
+driver = webdriver.PhantomJS()#executable_path='/Users/hstrohm/Desktop/mlb/node_modules/phantomjs/bin/phantomjs')
 
 url = 'http://www.espn.com/mlb/lines'
 
@@ -34,7 +34,7 @@ wg_lines = df[1].loc[df[0] == "Westgate"]
 wg_lines = wg_lines.str.split("\:", expand=True)
 wg_lines['test'] = wg_lines[1].str.slice(1,2)
 wg_lines = wg_lines.reset_index(drop=True)
-wg_lines.at[wg_lines['test'] == "1", 'Westgate Away Line'] = wg_lines[1].str.slice(0,4)
+wg_lines.at[wg_lines['test'] != "-", 'Westgate Away Line'] = wg_lines[1].str.slice(0,4)
 wg_lines.at[wg_lines['test'] == "-", 'Westgate Away Line'] = wg_lines[1].str.slice(0,5)
 wg_lines['Westgate Home Line'] = wg_lines[2]
 wg_lines = wg_lines.drop([0,1,2,'test'], axis=1)
@@ -48,10 +48,10 @@ pitchers['Home Pitcher'] = pitchers['Home Pitcher'].str.slice(0,-1).astype(str)
 pitchers['Away Pitcher'] = pitchers['Away Pitcher'].str.slice(0,-1).astype(str)
 pitchers = pitchers.drop(['Away ERA', 'Home ERA'], axis=1)
 
-team_dict = {"Arizona":'ARI', 'Atlanta':'ATL', 'Baltimore':'BAL', 'Boston':'BOS', 'Chi Cubs':'CHC', 'Chi White Sox': 'CHW', 'Cincinnati':'CIN', 'Cleveland':'CLE', 'Colorado':'COL', 'Detroit':'DET', 'Houston':'HOU', 'Kansas City':'KCR', 'LA Angels':'LAA', 'LA Dodgers':'LAD', 'Miami':'MIA', 'Milwaukee':'MIL', 'Minnesota':'MIN', 'NY Mets':'NYM', 'NY Yankees':'NYY', 'Oakland':'OAK', 'Philadelphia':'PHI', 'Pittsburgh':'PIT', 'San Diego':'SDP', 'Seattle':'SEA', 'San Francisco':'SFG', 'St. Louis':'STL', 'Tampa Bay':'TBR', 'Texas':'TEX', 'Toronto':'TOR', 'Washinton':'WSN'}
+team_dict = {"Arizona":'ARI', 'Atlanta':'ATL', 'Baltimore':'BAL', 'Boston':'BOS', 'Chi Cubs':'CHC', 'Chi White Sox': 'CHW', 'Cincinnati':'CIN', 'Cleveland':'CLE', 'Colorado':'COL', 'Detroit':'DET', 'Houston':'HOU', 'Kansas City':'KCR', 'LA Angels':'LAA', 'LA Dodgers':'LAD', 'Miami':'MIA', 'Milwaukee':'MIL', 'Minnesota':'MIN', 'NY Mets':'NYM', 'NY Yankees':'NYY', 'Oakland':'OAK', 'Philadelphia':'PHI', 'Pittsburgh':'PIT', 'San Diego':'SDP', 'Seattle':'SEA', 'San Francisco':'SFG', 'St. Louis':'STL', 'Tampa Bay':'TBR', 'Texas':'TEX', 'Toronto':'TOR', 'Washington':'WSN'}
 
-pitchers["Westgate Home Line"] = wg_lines['Westgate Home Line'].astype(int)
-pitchers["Westgate Away Line"] = wg_lines['Westgate Away Line'].astype(int)
+pitchers["Westgate Home Line"] = wg_lines['Westgate Home Line']
+pitchers["Westgate Away Line"] = wg_lines['Westgate Away Line']
 
 pitchers['Home Symbol'] = pitchers['Home Team'].map(team_dict)
 pitchers['Away Symbol'] = pitchers['Away Team'].map(team_dict)
