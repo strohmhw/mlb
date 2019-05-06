@@ -17,11 +17,7 @@ current_endDate = today.strftime("%Y%m%d")
 """
 
 # Date and Function Function
-<<<<<<< HEAD
-dates = pd.date_range(pd.datetime(2018,3,28), periods=225)
-=======
 dates = pd.date_range(pd.datetime(2018,4,5), periods=210)
->>>>>>> efe7d2b00be02111399c27ff9c7f9399894f8646
 
 def team_batters():
 

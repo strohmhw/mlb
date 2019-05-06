@@ -10,15 +10,9 @@ NL_east = pd.read_csv('qualified-pitchers/nl-east-qualified-pitchers.csv')
 NL_central = pd.read_csv('qualified-pitchers/nl-central-qualified-pitchers.csv')
 NL_west = pd.read_csv('qualified-pitchers/nl-west-qualified-pitchers.csv')
 
-<<<<<<< HEAD
-all_team_pitchers = pd.read_csv('team-pitchers-dataset-basic.csv')
-all_team_batters = pd.read_csv('team-batters-dataset.csv')
-all_team_pitchers_adv = pd.read_csv('team-pitchers-dataset.csv')
-=======
 all_team_pitchers = pd.read_csv('team-pitchers-dataset.csv')
 
 all_team_batters = pd.read_csv('team-batters-dataset-all.csv')
->>>>>>> efe7d2b00be02111399c27ff9c7f9399894f8646
 
 # Combine CSV Data Files, Add Columns
 all_qualified_pitchers = pd.DataFrame()
@@ -49,10 +43,6 @@ all_team_batters['varD'] = all_team_batters['HR']
 all_team_batters.drop_duplicates(inplace=True)
 
 all_team_batters['BsR_Sc_Season'] = ((all_team_batters['varA'] * all_team_batters['varB']) / (all_team_batters['varB'] + all_team_batters['varC'])) + all_team_batters['varD']
-<<<<<<< HEAD
-=======
-all_team_batters['BsR_Sc_Game'] = all_team_batters['BsR_Sc_Season'] / all_team_batters['PA'] * 38
->>>>>>> efe7d2b00be02111399c27ff9c7f9399894f8646
 
 # Pitching BaseRuns Calcs
 all_team_pitchers['varA'] = all_team_pitchers['H'] + all_team_pitchers['BB'] - all_team_pitchers['HR']
@@ -94,12 +84,6 @@ complete.to_csv('final_model_table.csv')
 
 # Heat Index for Offense
 
-<<<<<<< HEAD
-=======
-all_team_batters.to_csv('hank.csv')
-
-print(all_team_batters)
->>>>>>> efe7d2b00be02111399c27ff9c7f9399894f8646
 
 
 
