@@ -413,9 +413,9 @@ daily_model['xFIP_adj_Home'] = ((daily_model['xFIP_x'] - daily_model['Team xFIP_
 daily_model['xFIP_adj_Away'] = ((daily_model['xFIP_y'] - daily_model['Team xFIP_y']) * .60 + daily_model['Team xFIP_y']) / daily_model['Team xFIP_y']
 
 ## Pitcher Split Adjustment
-###
-###
-###
+daily_team_batters_vsAll_advanced_df['vs_L_Adj'] = daily_team_batters_vsL_advanced_df['wRC+'] / daily_team_batters_vsAll_advanced_df['wRC+']
+daily_team_batters_vsAll_advanced_df['vs_R_Adj'] = daily_team_batters_vsR_advanced_df['wRC+'] / daily_team_batters_vsAll_advanced_df['wRC+']
+print(daily_team_batters_vsAll_advanced_df)
 
 # Daily Win% With xFIP Adjustments
 daily_model['Exp_Win_%_Home_PitchAdj'] = np.power(daily_model['BsR_Sc_Season_x'],1.83) / (np.power(daily_model['BsR_Sc_Season_x'],1.83) + np.power(daily_model['BsR_Al_Season_x'],1.83) * daily_model['xFIP_adj_Home'])
