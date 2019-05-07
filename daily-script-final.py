@@ -8,7 +8,7 @@ import numpy as np
 
 # Load Webdriver, could be replaced by GeckoDriver as PhantomJS is deprecated
 phantomjs_driver = 'C:\phantomjs\bin\phantomjs'
-driver = webdriver.PhantomJS(executable_path='/Users/hstrohm/Desktop/mlb/node_modules/phantomjs/bin/phantomjs')
+driver = webdriver.PhantomJS()
 
 # League Groupings
 AL_east = '164,163,177,175,172'
