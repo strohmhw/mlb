@@ -8,7 +8,7 @@ import numpy as np
 
 # Load Webdriver, could be replaced by GeckoDriver as PhantomJS is deprecated
 phantomjs_driver = 'C:\phantomjs\bin\phantomjs'
-driver = webdriver.PhantomJS(executable_path='/Users/hstrohm/Desktop/mlb/node_modules/phantomjs/bin/phantomjs')
+driver = webdriver.PhantomJS()#executable_path='/Users/hstrohm/Desktop/mlb/node_modules/phantomjs/bin/phantomjs')
 
 # Set startDate, endDate
 dates = pd.date_range(pd.datetime(2018,3,28), periods=225)
@@ -23,14 +23,14 @@ def team_batters_vsL_advanced():
         endDate = unformat_endDate.strftime("%Y-%m-%d")
         startDate = (unformat_endDate - datetime.timedelta(days=45)).strftime("%Y-%m-%d")
 
-        relevant_url = 'https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=1&splitArrPitch=&position=B&autoPt=false&splitTeams=false&statType=team&statgroup=2&startDate=' + startDate + "&enddate=" + endDate + "&players=&filter=&endDate=" + endDate
+        relevant_url = 'https://www.fangraphs.com/leaders/splits-leaderboards?splitArr=1&splitArrPitch=&position=B&autoPt=false&splitTeams=false&statType=team&statgroup=2&startDate=' + startDate + "&players=&filter=&endDate=" + endDate
 
         try:
             # Load URL, Scrap URL
             url = relevant_url
             print("Loading Team Batters vs. L URL...")
             driver.get(url)
-            time.sleep(15)
+            time.sleep(10)
 
             # Convert to Beautiful Soup
             htmlSource = driver.page_source
@@ -81,7 +81,7 @@ def team_batters_vsR_advanced():
             url = relevant_url
             print("Loading Team Batters vs. R URL...")
             driver.get(url)
-            time.sleep(15)
+            time.sleep(10)
 
             # Convert to Beautiful Soup
             htmlSource = driver.page_source
@@ -132,7 +132,7 @@ def team_batters_vsAll_advanced():
             url = relevant_url
             print("Loading Team Batters vs. All URL...")
             driver.get(url)
-            time.sleep(15)
+            time.sleep(10)
 
             # Convert to Beautiful Soup
             htmlSource = driver.page_source

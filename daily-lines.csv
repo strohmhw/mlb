@@ -1,13 +1,16 @@
 ,Away Team,Away Pitcher,Away pHand,Home Team,Home Pitcher,Home pHand,Westgate Home Line,Westgate Away Line,Home Symbol,Away Symbol
-0,San Francisco,D. Pomeranz,L,Cincinnati,A. DeSclafani,R, -145, 135,CIN,SFG
-1,Chi White Sox,I. Nova,R,Cleveland,T. Bauer,R, -260, 230,CLE,CHW
-2,Seattle,F. Hernandez,R,NY Yankees,C. Sabathia,L, -145, 135,NYY,SEA
-3,Boston,J. Smith,R,Baltimore,J. Means,L, 145, -155,BAL,BOS
-4,Minnesota,M. Perez,L,Toronto,M. Stroman,R, -110, -100,TOR,MIN
-5,Arizona,M. Kelly,R,Tampa Bay,B. Snell,L, -210, 185,TBR,ARI
-6,Washington,M. Scherzer,R,Milwaukee,J. Chacin,R, -105, -105,MIL,WSN
-7,Philadelphia,V. Velasquez,R,St. Louis,M. Mikolas,R, -125, 115,STL,PHI
-8,Miami,S. Alcantara,R,Chi Cubs,C. Hamels,L, -280, 250,CHC,MIA
-9,Kansas City,J. Junis,R,Houston,G. Cole,R, -280, 250,HOU,KCR
-10,NY Mets,J. deGrom,R,San Diego,C. Paddack,R, 105, -115,SDP,NYM
-11,Atlanta,M. Fried,L,LA Dodgers,W. Buehler,R, -160, 150,LAD,ATL
+0,Chi White Sox,L. Giolito,R,Cleveland,J. Rodriguez,R, -140, 130,CLE,CHW
+1,Seattle,M. Gonzales,L,NY Yankees,M. Tanaka,R, -150, 140,NYY,SEA
+2,Boston,H. Velazquez,R,Baltimore,D. Hess,R,,,BAL,BOS
+3,Texas,A. Sampson,R,Pittsburgh,S. Brault,L, -135, 125,PIT,TEX
+4,Minnesota,J. Berrios,R,Toronto,A. Sanchez,R, 120, -130,TOR,MIN
+5,LA Angels,G. Canning,R,Detroit,D. Norris,L, 130, -140,DET,LAA
+6,Arizona,T. Clarke,R,Tampa Bay,R. Stanek,R,,,TBR,ARI
+7,Washington,S. Strasburg,R,Milwaukee,A. Houser,R, 0, 0MI,MIL,WSN
+8,Philadelphia,A. Nola,R,St. Louis,D. Hudson,R, -100, -110,STL,PHI
+9,Miami,C. Smith,L,Chi Cubs,J. Lester,L,,,CHC,MIA
+10,Kansas City,D. Duffy,L,Houston,C. McHugh,R, -220, 200,HOU,KCR
+11,San Francisco,M. Bumgarner,L,Colorado,A. Senzatela,R, -120, 110,COL,SFG
+12,Cincinnati,T. Mahle,R,Oakland,M. Fiers,R, -120, 110,OAK,CIN
+13,Atlanta,M. Fried,L,LA Dodgers,H. Ryu,L,,,LAD,ATL
+14,NY Mets,N. Syndergaard,R,San Diego,C. Quantrill,R, 135, -145,SDP,NYM
