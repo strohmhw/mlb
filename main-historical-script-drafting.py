@@ -1,6 +1,7 @@
 # Main Script Drafting
 import datetime, time
 import pandas as pd
+import numpy as np
 
 # Import CSV Data Files
 AL_east = pd.read_csv('historical-backtest/qualified-pitchers/al-east-qualified-pitchers.csv')
@@ -13,9 +14,9 @@ NL_west = pd.read_csv('historical-backtest/qualified-pitchers/nl-west-qualified-
 team_batters_df_2018 = pd.read_csv('historical-backtest/team-batters-dataset-2018.csv')
 team_pitchers_basic_df_2018 = pd.read_csv('historical-backtest/team-pitchers-dataset-2018.csv')
 team_Spitchers_advanced_df_2018 = pd.read_csv('historical-backtest/team-Spitchers-advanced-dataset-2018.csv')
-team_batters_vsL_advanced_df_2018 = pd.read_csv('   .csv')
-team_batters_vsR_advanced_df_2018 = pd.read_csv('     .csv')
-team_batters_vsAll_advanced_df_2018 = pd.read_csv('   .csv')
+team_batters_vsL_advanced_df_2018 = pd.read_csv('historical-backtest/team-batters-vsL.csv')
+team_batters_vsR_advanced_df_2018 = pd.read_csv('historical-backtest/team-batters-vsR.csv')
+team_batters_vsAll_advanced_df_2018 = pd.read_csv('historical-backtest/team-batters-vsAll.csv')
 
 # Combine CSV Data Files, Add Columns
 qualified_pitchers_df_2018 = pd.DataFrame()
@@ -26,16 +27,15 @@ qualified_pitchers_df_2018['team_date'] = (qualified_pitchers_df_2018['Tm'] + qu
 team_batters_df_2018['team_date'] = (team_batters_df_2018['Tm'] + team_batters_df_2018['Date']).astype(str)
 team_pitchers_basic_df_2018['team_date'] = (team_pitchers_basic_df_2018['Tm'] + team_pitchers_basic_df_2018['Date']).astype(str)
 team_Spitchers_advanced_df_2018['team_date'] = (team_Spitchers_advanced_df_2018['Tm'] + team_Spitchers_advanced_df_2018['Date']).astype(str)
-team_batters_vsL_advanced_df_2018['team_date'] =
-team_batters_vsR_advanced_df_2018['team_date'] =
-team_batters_vsAll_advanced_df_2018['team_date'] =
+team_batters_vsL_advanced_df_2018['team_date'] = (team_batters_vsL_advanced_df_2018['Tm'] + team_batters_vsL_advanced_df_2018['Date']).astype(str)
+team_batters_vsR_advanced_df_2018['team_date'] = (team_batters_vsR_advanced_df_2018['Tm'] + team_batters_vsR_advanced_df_2018['Date']).astype(str)
+team_batters_vsAll_advanced_df_2018['team_date'] = (team_batters_vsAll_advanced_df_2018['Tm'] + team_batters_vsAll_advanced_df_2018['Date']).astype(str)
 
 # Create 'Pitcher Adjusted Values' in xFIP for Each Day
 team_date_xFIP = pd.Series(team_Spitchers_advanced_df_2018.xFIP.values,index=team_Spitchers_advanced_df_2018.team_date).to_dict()
 qualified_pitchers_df_2018['team_xFIP'] = qualified_pitchers_df_2018['team_date'].map(team_date_xFIP)
 qualified_pitchers_df_2018['xFIP_diff'] = qualified_pitchers_df_2018['xFIP'] - qualified_pitchers_df_2018['team_xFIP']
 qualified_pitchers_df_2018['Pitcher_Date'] = qualified_pitchers_df_2018['Name'] + qualified_pitchers_df_2018['Date']
-print(qualified_pitchers_df_2018)
 
 # Hitting BaseRuns Calcs
 team_batters_df_2018['TB'] = (1 * team_batters_df_2018['1B']) + (2 * team_batters_df_2018['2B']) + (3 * team_batters_df_2018['3B']) + (4 * team_batters_df_2018['HR'])
@@ -55,21 +55,19 @@ team_pitchers_basic_df_2018.drop_duplicates(inplace=True)
 team_pitchers_basic_df_2018['BsR_Al_Season'] = ((team_pitchers_basic_df_2018['varA'] * team_pitchers_basic_df_2018['varB']) / (team_pitchers_basic_df_2018['varB'] + team_pitchers_basic_df_2018['varC'])) + team_pitchers_basic_df_2018['varD']
 
 # Create Team Specific L vs. R Splits
-"""daily_team_batters_vsAll_advanced_df = daily_team_batters_vsAll_advanced_df.merge(daily_team_batters_vsL_advanced_df[['Tm', 'wRC+']], how='left', left_on='Tm', right_on='Tm')
-daily_team_batters_vsAll_advanced_df = daily_team_batters_vsAll_advanced_df.merge(daily_team_batters_vsR_advanced_df[['Tm', 'wRC+']], how='left', left_on='Tm', right_on='Tm')
-daily_team_batters_vsAll_advanced_df.rename(columns = {'wRC+_x':'wRC+_All','wRC+_y':'wRC+_L','wRC+':'wRC+_R'}, inplace=True)
-daily_team_batters_vsAll_advanced_df['vs_L_Adj'] = daily_team_batters_vsAll_advanced_df['wRC+_L'] / daily_team_batters_vsAll_advanced_df['wRC+_All']
-daily_team_batters_vsAll_advanced_df['vs_R_Adj'] = daily_team_batters_vsAll_advanced_df['wRC+_R'] / daily_team_batters_vsAll_advanced_df['wRC+_All']
-"""
+team_batters_vsAll_advanced_df_2018 = team_batters_vsAll_advanced_df_2018.merge(team_batters_vsL_advanced_df_2018[['team_date', 'wRC+']], how='left', left_on='team_date', right_on='team_date')
+team_batters_vsAll_advanced_df_2018 = team_batters_vsAll_advanced_df_2018.merge(team_batters_vsR_advanced_df_2018[['team_date', 'wRC+']], how='left', left_on='team_date', right_on='team_date')
+team_batters_vsAll_advanced_df_2018.rename(columns = {'wRC+_x':'wRC+_All','wRC+_y':'wRC+_L','wRC+':'wRC+_R'}, inplace=True)
+team_batters_vsAll_advanced_df_2018['vs_L_Adj'] = team_batters_vsAll_advanced_df_2018['wRC+_L'] / team_batters_vsAll_advanced_df_2018['wRC+_All']
+team_batters_vsAll_advanced_df_2018['vs_R_Adj'] = team_batters_vsAll_advanced_df_2018['wRC+_R'] / team_batters_vsAll_advanced_df_2018['wRC+_All']
 
 # Creating Model table
-"""model_table_batters = team_batters_df_2018[['team_date', 'BsR_Sc_Season']]
+model_table_batters = team_batters_df_2018[['team_date', 'BsR_Sc_Season']]
 model_table_pitchers = team_pitchers_basic_df_2018[['team_date', 'BsR_Al_Season']]
 model_table_xFIP = qualified_pitchers_df_2018[['team_date', 'IP', 'xFIP_diff']]
 
 model_table = model_table_batters.merge(model_table_pitchers, on="team_date", how="left")
 model_table = model_table.merge(model_table_xFIP, on="team_date", how="left")
-"""
 
 # Import Remaining Necessary Packages
 historical_lines_2018_file = pd.read_csv('historical-backtest/complete-fixed-odds-2018.csv')
@@ -77,34 +75,60 @@ historical_lines_2018_file = pd.read_csv('historical-backtest/complete-fixed-odd
 # Model Table Creation
 historical_lines_2018 = pd.DataFrame()
 historical_lines_2018 = historical_lines_2018_file[['Date_x', 'Team_x', 'Final_x', 'Open_x', 'Close_x', 'qp_x', 'Team_y', 'Final_y', 'Open_y', 'Close_y', 'qp_y']]
-historical_lines_2018['Home_Pitcher_Date'] = historical_lines_2018['qp_x'].astype(str) + historical_lines_2018['Date_x']
-historical_lines_2018['Away_Pitcher_Date'] = historical_lines_2018['qp_y'].astype(str) + historical_lines_2018['Date_x']
+historical_lines_2018['Home_Pitcher_Date'] = historical_lines_2018['qp_x'] + historical_lines_2018['Date_x']
+historical_lines_2018['Away_Pitcher_Date'] = historical_lines_2018['qp_y'] + historical_lines_2018['Date_x']
+historical_lines_2018['Home_Team_Date'] = historical_lines_2018['Team_x'] + historical_lines_2018['Date_x']
+historical_lines_2018['Away_Team_Date'] = historical_lines_2018['Team_y'] + historical_lines_2018['Date_x']
 
-daily_model = historical_lines_2018.merge(daily_qualified_pitchers_df[['Pitcher', 'xFIP']], how='left', left_on='Home Pitcher', right_on='Pitcher')
-daily_model = daily_model.merge(daily_qualified_pitchers_df[['Pitcher', 'xFIP']], how='left', left_on='Away Pitcher', right_on='Pitcher')
-daily_model = daily_model.drop(['Pitcher_x', 'Pitcher_y'], axis=1)
+historical_lines_2018 = historical_lines_2018.merge(qualified_pitchers_df_2018[['Pitcher_Date', 'xFIP', 'team_xFIP']], how='left', left_on='Home_Pitcher_Date', right_on='Pitcher_Date')
+historical_lines_2018 = historical_lines_2018.merge(qualified_pitchers_df_2018[['Pitcher_Date', 'xFIP', 'team_xFIP']], how='left', left_on='Away_Pitcher_Date', right_on='Pitcher_Date')
+historical_lines_2018 = historical_lines_2018.drop(['Pitcher_Date_x', 'Pitcher_Date_y'], axis=1)
 
-print(odds)
-odds['team_date_1'] = odds['Team Home'] + odds['Date Home']
-odds['team_date_2_chg'] = odds['Team'] + odds['Date']
-complete = odds.merge(model_table, on="team_date_1", how='left')
+historical_lines_2018 = historical_lines_2018.merge(model_table[['team_date', 'BsR_Sc_Season', 'BsR_Al_Season']], how='left', left_on='Home_Team_Date', right_on='team_date')
+historical_lines_2018 = historical_lines_2018.merge(model_table[['team_date', 'BsR_Sc_Season', 'BsR_Al_Season']], how='left', left_on='Away_Team_Date', right_on='team_date')
 
-model_table['team_date_2'] = model_table['team_date']
-model_table_second = model_table
-model_table_second.columns = ['team_date_chg', 'BsR_Sc_Season_chg', 'BsR_Al_Season_chg', 'IP_chg', 'xFIP_diff_chg', 'team_date_1_chg', 'team_date_2_chg']
-complete = complete.merge(model_table_second, on="team_date_2_chg", how='left')
+# Daily Win % Calculation
+historical_lines_2018['Exp_Win_%_Home'] = np.power(historical_lines_2018['BsR_Sc_Season_x'],1.83) / (np.power(historical_lines_2018['BsR_Sc_Season_x'],1.83) + np.power(historical_lines_2018['BsR_Al_Season_x'],1.83))
+historical_lines_2018['Exp_Win_%_Away'] = np.power(historical_lines_2018['BsR_Sc_Season_y'],1.83) / (np.power(historical_lines_2018['BsR_Sc_Season_y'],1.83) + np.power(historical_lines_2018['BsR_Al_Season_y'],1.83))
 
-complete.to_csv('final_model_table.csv')
+# Pitcher Split Adjustment ######## FIX ODDS File to include pitcher hand
+historical_lines_2018['BsR_Sc_Season_Home_Split'] = (historical_lines_2018['BsR_Sc_Season_x'] * (historical_lines_2018['vs_L_Adj_x']).where(historical_lines_2018['Home pHand'] == 'L', (historical_lines_2018['BsR_Sc_Season_x'] * historical_lines_2018['vs_R_Adj_x']) * .60))
+historical_lines_2018['BsR_Sc_Season_Away_Split'] = (historical_lines_2018['BsR_Sc_Season_y'] * (historical_lines_2018['vs_L_Adj_y']).where(historical_lines_2018['Away pHand'] == 'L', (historical_lines_2018['BsR_Sc_Season_y'] * historical_lines_2018['vs_R_Adj_y']) * .60))
 
-# Create 'Adjusted Bullpen Values', Controlling for Injuries, Usage, Etc.
+# XFIP Adjustments
+historical_lines_2018['xFIP_adj_Home'] = ((historical_lines_2018['xFIP_x'] - historical_lines_2018['team_xFIP_x']) * .60 + historical_lines_2018['team_xFIP_x']) / historical_lines_2018['team_xFIP_x']
+historical_lines_2018['xFIP_adj_Away'] = ((historical_lines_2018['xFIP_y'] - historical_lines_2018['team_xFIP_y']) * .60 + historical_lines_2018['team_xFIP_y']) / historical_lines_2018['team_xFIP_y']
+historical_lines_2018['BsR_Al_Season_Home'] = historical_lines_2018['BsR_Al_Season_x'] * historical_lines_2018['xFIP_adj_Home']
+historical_lines_2018['BsR_Al_Season_Away'] = historical_lines_2018['BsR_Al_Season_y'] * historical_lines_2018['xFIP_adj_Away']
+
+###### FIX FROM HERE
+# Down AFTER SPLIT ADJUSTMENT
+
+# Daily Win% With xFIP Adjustments & L/R Split Adjustments
+historical_lines_2018['Exp_Win_%_Home_Final'] = np.power(historical_lines_2018['BsR_Sc_Season_Home_Split'],1.83) / (np.power(historical_lines_2018['BsR_Sc_Season_Home_Split'],1.83) + np.power(historical_lines_2018['BsR_Al_Season_Home'],1.83))
+historical_lines_2018['Exp_Win_%_Away_Final'] = np.power(historical_lines_2018['BsR_Sc_Season_Away_Split'],1.83) / (np.power(historical_lines_2018['BsR_Sc_Season_Away_Split'],1.83) + np.power(historical_lines_2018['BsR_Al_Season_Away'],1.83))
+
+# Game Specific Win% w/ Home Field Advantage
+historical_lines_2018['Exp_Win_%_Home_Driver'] = (historical_lines_2018['Exp_Win_%_Home_Final'] / (historical_lines_2018['Exp_Win_%_Home_Final'] + historical_lines_2018['Exp_Win_%_Away_Final'])) * 1.08
+historical_lines_2018['Exp_Win_%_Away_Driver'] = (historical_lines_2018['Exp_Win_%_Away_Final'] / (historical_lines_2018['Exp_Win_%_Away_Final'] + historical_lines_2018['Exp_Win_%_Home_Final'])) * .92
+historical_lines_2018['Model_Win_%_Home'] = (historical_lines_2018['Exp_Win_%_Home_Driver'] + (1-historical_lines_2018['Exp_Win_%_Away_Driver']))/2
+historical_lines_2018['Model_Win_%_Away'] = (historical_lines_2018['Exp_Win_%_Away_Driver'] + (1-historical_lines_2018['Exp_Win_%_Home_Driver']))/2
+
+## Calculate Line % Implication
+historical_lines_2018['Implied Win % Home'] = (abs(historical_lines_2018['Westgate Home Line']) / (abs(historical_lines_2018['Westgate Home Line']) + 100)).where(historical_lines_2018['Westgate Home Line'] < 0, (100 / (historical_lines_2018['Westgate Home Line'] + 100)))
+historical_lines_2018['Implied Win % Away'] = (abs(historical_lines_2018['Westgate Away Line']) / (abs(historical_lines_2018['Westgate Away Line']) + 100)).where(historical_lines_2018['Westgate Away Line'] < 0, (100 / (historical_lines_2018['Westgate Away Line'] + 100)))
+
+## Calculate EDGE Per Games
+historical_lines_2018['EDGE % Home'] = historical_lines_2018['Model_Win_%_Home'] - historical_lines_2018['Implied Win % Home']
+historical_lines_2018['EDGE % Away'] = historical_lines_2018['Model_Win_%_Away'] - historical_lines_2018['Implied Win % Away']
 
 # Left vs. Right Splits
 
+
+
+
+
 # Heat Index for Offense
-
-
-
-
-
+# Create 'Adjusted Bullpen Values', Controlling for Injuries, Usage, Etc.
 # For Hitting, we take team stats for last 45 days, adjust based on players in lineup/ performance over that time
 # Adjust for new unknown players using their projections
